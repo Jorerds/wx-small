@@ -1,0 +1,25 @@
+<!--index.wxml-->
+<view class="container">
+  <view class="userinfo">
+    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    <block wx:else>
+      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+    </block>
+  </view>
+  <view class="" style="">
+    <button bindtap="bindViewNewk">跳转</button>
+  </view>
+  <view class="usermotto">
+    <text class="user-motto">{{motto}}</text>
+  </view>
+  <view>
+    <text wx:if="{{hasUserInfo && canIUse}}">{{status}}</text>
+  </view>
+  <view>
+    <map  ></map>
+    <button bindtap="getMap"  >获取当期位置</button>
+    <button bindtap="getBjboaData"  >获取保健办用户的请求</button>
+  </view>
+</view>
+

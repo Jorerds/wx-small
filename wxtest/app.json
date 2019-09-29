@@ -1,0 +1,42 @@
+{
+    "pages": [
+        "pages/index/index",
+        "pages/logs/logs",
+        "pages/newk/newk",
+        "pages/usrs/usrs"
+    ],
+    "window": {
+        "backgroundTextStyle": "light",
+        "navigationBarBackgroundColor": "#fff",
+        "navigationBarTitleText": "首页",
+        "navigationBarTextStyle": "black"
+    },
+    "tabBar": {
+        "color": "#2c2c2c",
+        "selectedColor": "#e4480f",
+        "borderStyle": "white",
+        "backgroundColor": "#e6e6e6",
+        "position": "bottom",
+        "list": [
+            {
+                "selectedIconPath": "images/index-2.png",
+                "iconPath": "images/index.png",
+                "pagePath": "pages/index/index",
+                "text": "首页"
+            },
+            {
+                "selectedIconPath":"images/usrs-2.png",
+                "iconPath":"images/usrs.png",
+                "pagePath":"pages/usrs/usrs",
+                "text":"用户列表"
+            },
+            {
+                "selectedIconPath": "images/logs-2.png",
+                "iconPath": "images/logs.png",
+                "pagePath": "pages/logs/logs",
+                "text": "日志"
+            }
+        ]
+    },
+    "sitemapLocation": "sitemap.json"
+}
