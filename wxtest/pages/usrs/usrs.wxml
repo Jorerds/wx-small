@@ -1,2 +1,6 @@
 <!--pages/usrs/usrs.wxml-->
-<text>pages/usrs/usrs.wxml</text>
+<view class="container log-list">
+<block wx:for="{{userList}}"  wx:key="{{item.usr_id}}">
+    <text  class="log-item">{{index+1}}——{{item.usr_name}}</text>
+</block>
+</view>

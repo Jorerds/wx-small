@@ -12,6 +12,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    usrList:[]
   },
   
   //事件处理函数
@@ -78,6 +79,7 @@ Page({
     // })
   },
   getBjboaData:function(){
+    var that = this;
     wx.request({
         url: 'http://localhost:8016/bjboa/api',
         data: {},
@@ -88,7 +90,10 @@ Page({
         },
         success(res){
             if(res.statusCode==200){
-                console.log(res.data)
+                that.setData({
+                    usrList:res.data
+                })
+                // console.log(res.data)
             }
         }
     })

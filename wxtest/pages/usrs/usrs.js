@@ -11,15 +11,11 @@ Page({
     },
     getIndexData: function () {
         let that = this;
-        console.log(that)
-        // util.request(api.IndexUrl).that(function (res) {
-        //     console.log(res)
-        //     if (res.errno === 0) {
-        //         that.setData({
-        //             userList: res
-        //         })
-        //     }
-        // })
+        util.request(api.IndexUrl).then(function (res) {
+            that.setData({
+                userList: res
+            })
+        })
     },
     /**
      * 生命周期函数--监听页面加载

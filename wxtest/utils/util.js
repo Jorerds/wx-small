@@ -29,15 +29,13 @@ function request(url,data={},method='GET'){
                 'X-Nideshop-Token':wx.getStorageSync('token')
             },
             success:function(res){
-                console.log('success')
                 if (res.statusCode==200){
                     resolve(res.data);
                 }
-            },
-            fail: function (err) {
-                reject(err)
-                console.log("failed")
             }
         })
     });
+}
+module.exports={
+    request,
 }

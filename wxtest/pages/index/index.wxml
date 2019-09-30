@@ -21,5 +21,8 @@
     <button bindtap="getMap"  >获取当期位置</button>
     <button bindtap="getBjboaData"  >获取保健办用户的请求</button>
   </view>
+  <view wx:for="{{usrList}}" wx:if="{{usrList!=''}}" wx:key="user">
+  <text>{{item.usr_name}}</text>
+  </view>
 </view>
 
