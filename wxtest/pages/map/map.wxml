@@ -1,0 +1,4 @@
+<view>
+<map longitude="{{longitude}}" latitude="{{latitude}}" scale="14" markers="{{markers}}" bindmarkertap="markertap" bindcontroltap="controltap"></map>
+<button bindtap="getMap"  >获取当期位置</button>
+</view>

@@ -2,9 +2,10 @@
 //获取应用实例
 const api=require('../../config/api.js');
 const util = require('../../utils/util.js');
+var md5 = require('../../utils/md5.js');
+var jsencrypt = require('../../utils/jsencrypt.js');
 const app = getApp()
-var QQMapWX = require('../../libs/qqmap-wx-jssdk.js');
-var qqmapsdk;
+
 Page({
   data: {
     motto: 'Hello World',
@@ -12,7 +13,7 @@ Page({
     userInfo: {},
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
-    usrList:[]
+    usrList:[],
   },
   
   //事件处理函数
@@ -25,6 +26,12 @@ Page({
     wx.navigateTo({
       url:'../newk/newk'
     })
+  },
+//   跳转到地图页面
+  bindViewMap:function(){
+      wx.navigateTo({
+          url: '../map/map',
+      })
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -55,28 +62,12 @@ Page({
     }
   },
   getUserInfo: function(e) {
-    
+      console.log(e.detail.userInfo)
     app.globalData.userInfo = e.detail.userInfo
     this.setData({
       userInfo: e.detail.userInfo,
       hasUserInfo: true
     })
-  },
-  getMap:function(){
-    wx.getLocation({
-      type: 'wgs84',
-      success: (res) => {
-        var latitude = res.latitude // 纬度
-        var longitude = res.longitude // 经度
-        console.log(res)
-      }
-    })
-    //条形码/二维码识别api
-    // wx.scanCode({
-    //   success: (res) => {
-    //     console.log(res)
-    //   }
-    // })
   },
   getBjboaData:function(){
     var that = this;
@@ -97,5 +88,45 @@ Page({
             }
         }
     })
+  },
+  login:function(){
+    //   if(wx.getStorageSync(key)) return;
+    // RSA非对称加密公共秘钥
+    var password="py74108520"
+      var public_key ="-----BEGIN PUBLIC KEY-----MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQC1l9GF0LMmM1GDasbriy1o3RlkRkZBD5CpxwDDHRIxQ9kxBjoKgRrusDrqneseRSysq1mFmcPe+Fj22+2TqQjFEgb+93VdWFPCtDK4JkMBAO34BmzUZNCu9Xyh+nw8dF3q88sipv85dRq0/MzP5OoSgS6whx75YKQrCbFX8sqEoQIDAQAB-----END PUBLIC KEY-----"
+      var encrypt = new jsencrypt.JSEncrypt();
+      encrypt.setPublicKey(public_key)
+      password=encrypt.encrypt(password)
+      console.log(password)
+
+    // 获取当期时间日期
+      var time =util.getTime(1);
+      
+      var that=this
+      var t = 'xvIY41901U0ZWEwL' + time + '200' +
+          'X8ReCjamjKWlKPFO'
+      wx.login({
+          success:function(res){
+              if (res.code){
+                  wx.request({
+                    //   url: 'http://127.0.0.1:8088/bjboa/admin?fid=login&part=weixinlogin' ,
+                      url: 'http://127.0.0.1:8088/rmoa/admin?fid=api&fun=test_usr',
+                      header:{
+                          'token':md5.hex_md5(t),
+                      },
+                    //请求头，当用post请求时候使用这个
+                    //  header: {
+                    //       'content-type': 'application/x-www-form-urlencoded'
+                    //   },
+                    //   data: { code: res.code},
+                      data: { login_id: '200', mobile: '123', ticket: md5.hex_md5(t), password: password},
+                      method:'get',
+                      success:function(res){
+                        console.log(res)
+                      }
+                  })
+              }
+          }
+      })
   }
 })

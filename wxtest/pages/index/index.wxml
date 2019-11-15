@@ -10,6 +10,7 @@
   <view class="" style="">
     <button bindtap="bindViewNewk">跳转</button>
   </view>
+  <view><button bindtap="bindViewMap">查看地图</button></view>
   <view class="usermotto">
     <text class="user-motto">{{motto}}</text>
   </view>
@@ -17,12 +18,17 @@
     <text wx:if="{{hasUserInfo && canIUse}}">{{status}}</text>
   </view>
   <view>
-    <map  ></map>
-    <button bindtap="getMap"  >获取当期位置</button>
-    <button bindtap="getBjboaData"  >获取保健办用户的请求</button>
+    <button bindtap="getBjboaData"  >获取用户的请求</button>
   </view>
   <view wx:for="{{usrList}}" wx:if="{{usrList!=''}}" wx:key="user">
   <text>{{item.usr_name}}</text>
   </view>
+  <view>
+<button bindtap="login"  >测试账号查询接口</button>
 </view>
+<view>
+<button bindtap="login"  >测试账号查询接口</button>
+</view>
+</view>
+
 

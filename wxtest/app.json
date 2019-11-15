@@ -3,7 +3,8 @@
         "pages/index/index",
         "pages/logs/logs",
         "pages/newk/newk",
-        "pages/usrs/usrs"
+        "pages/usrs/usrs",
+        "pages/map/map"
     ],
     "window": {
         "backgroundTextStyle": "light",
@@ -25,10 +26,10 @@
                 "text": "首页"
             },
             {
-                "selectedIconPath":"images/usrs-2.png",
-                "iconPath":"images/usrs.png",
-                "pagePath":"pages/usrs/usrs",
-                "text":"用户列表"
+                "selectedIconPath": "images/usrs-2.png",
+                "iconPath": "images/usrs.png",
+                "pagePath": "pages/usrs/usrs",
+                "text": "用户列表"
             },
             {
                 "selectedIconPath": "images/logs-2.png",
@@ -38,5 +39,10 @@
             }
         ]
     },
-    "sitemapLocation": "sitemap.json"
+    "sitemapLocation": "sitemap.json",
+    "permission": {
+        "scope.userLocation": {
+            "desc": "你的位置信息将用于小程序位置接口的效果展示"
+        }
+    }
 }

@@ -36,6 +36,28 @@ function request(url,data={},method='GET'){
         })
     });
 }
+// 获取当期日期
+function getTime(models=1){
+    var res=''
+    var now = new Date();
+    var year = now.getFullYear(); //得到年份
+    var month = now.getMonth();//得到月份
+    var date = now.getDate();//得到日期
+    month = month + 1;
+    if (month < 10) month = "0" + month;
+    if (date < 10) date = "0" + date;
+    if (models==1){
+        res = year + '' + month + '' + date
+    }
+    else if(models==2){
+        res=year+'-'+month+'-'+date
+    }
+    else{
+        res=year+'/'+month+'/'+date
+    }
+    return res
+}
 module.exports={
-    request,
+    request:request,
+    getTime: getTime
 }
